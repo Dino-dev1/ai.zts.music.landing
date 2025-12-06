@@ -13,39 +13,39 @@ interface FooterSection {
 
 const footerSections: FooterSection[] = [
   {
-    title: "For Venues",
+    title: "Product",
     links: [
-      { href: "#", label: "Post a Gig" },
-      { href: "#", label: "Browse Artists" },
-      { href: "#", label: "Pricing" },
-      { href: "#", label: "Enterprise" },
-    ],
-  },
-  {
-    title: "For Artists",
-    links: [
-      { href: "#", label: "Find Gigs" },
-      { href: "#", label: "Create Profile" },
-      { href: "#", label: "Pro Features" },
-      { href: "#", label: "Success Tips" },
+      { href: "#features", label: "Features" },
+      { href: "#pricing", label: "Pricing" },
+      { href: "#", label: "API" },
+      { href: "#", label: "Integrations" },
     ],
   },
   {
     title: "Company",
     links: [
-      { href: "#", label: "About Us" },
+      { href: "#", label: "About" },
       { href: "#", label: "Blog" },
       { href: "#", label: "Careers" },
       { href: "#", label: "Press" },
     ],
   },
   {
-    title: "Support",
+    title: "Resources",
     links: [
+      { href: "#", label: "Documentation" },
       { href: "#", label: "Help Center" },
+      { href: "#", label: "Community" },
       { href: "#", label: "Contact" },
-      { href: "#", label: "Privacy Policy" },
-      { href: "#", label: "Terms of Service" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { href: "#", label: "Privacy" },
+      { href: "#", label: "Terms" },
+      { href: "#", label: "Cookies" },
+      { href: "#", label: "Licenses" },
     ],
   },
 ];
@@ -62,23 +62,14 @@ export function Footer() {
                 <Music2 className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold tracking-tight">
-                Gig<span className="text-gradient">Connect</span>
+                ZTS <span className="text-gradient">Music</span>
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              The platform connecting venues with talented artists. Find the perfect 
-              entertainment for your restaurant, hotel, or event.
+              The AI-powered music platform for artists, producers, and music
+              enthusiasts. Create, collaborate, and share your music with the
+              world.
             </p>
-            <div className="mt-4 flex gap-4">
-              <div className="rounded-lg bg-primary/10 px-3 py-1.5">
-                <span className="text-2xl font-bold text-primary">5k+</span>
-                <span className="ml-1 text-xs text-muted-foreground">Artists</span>
-              </div>
-              <div className="rounded-lg bg-pink-500/10 px-3 py-1.5">
-                <span className="text-2xl font-bold text-pink-400">2k+</span>
-                <span className="ml-1 text-xs text-muted-foreground">Venues</span>
-              </div>
-            </div>
           </div>
 
           {/* Links */}
@@ -107,7 +98,7 @@ export function Footer() {
         <div className="mt-12 border-t border-border/40 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} GigConnect. All rights reserved.
+              © {new Date().getFullYear()} ZTS Music. All rights reserved.
             </p>
             <div className="flex gap-6">
               <Link
@@ -120,13 +111,13 @@ export function Footer() {
                 href="#"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                Instagram
+                Discord
               </Link>
               <Link
                 href="#"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                LinkedIn
+                GitHub
               </Link>
             </div>
           </div>
@@ -135,3 +126,4 @@ export function Footer() {
     </footer>
   );
 }
+

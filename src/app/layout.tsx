@@ -15,15 +15,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GigConnect | Connect Venues with Artists",
+  title: "ZTS Music | AI-Powered Music Platform",
   description:
-    "The platform connecting restaurants, hotels, and venues with talented artists and performers. Book live entertainment for your events with ease.",
-  keywords: ["gig", "artists", "venues", "live music", "entertainment", "booking", "performers", "restaurants", "hotels"],
-  authors: [{ name: "GigConnect" }],
+    "Discover the future of music with ZTS Music - Your AI-powered music platform for artists, producers, and music enthusiasts.",
+  keywords: ["music", "AI", "platform", "artists", "producers", "streaming"],
+  authors: [{ name: "ZTS Music" }],
   openGraph: {
-    title: "GigConnect | Connect Venues with Artists",
+    title: "ZTS Music | AI-Powered Music Platform",
     description:
-      "Find the perfect artist for your venue or discover your next gig opportunity.",
+      "Discover the future of music with ZTS Music - Your AI-powered music platform.",
     type: "website",
     locale: "en_US",
   },
@@ -37,12 +37,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${outfit.variable} ${jetbrainsMono.variable} font-sans relative`}
+        className={`${outfit.variable} ${jetbrainsMono.variable} font-sans`}
       >
-        <main className="relative">
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );
 }
+

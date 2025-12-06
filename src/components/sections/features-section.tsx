@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import {
-  Search,
-  Calendar,
-  MessageSquare,
+  Wand2,
+  Users,
+  Globe,
+  Zap,
   Shield,
-  CreditCard,
-  Star,
+  BarChart3,
 } from "lucide-react";
 
 interface Feature {
@@ -15,63 +15,50 @@ interface Feature {
   title: string;
   description: string;
   gradient: string;
-  forVenue?: boolean;
-  forArtist?: boolean;
 }
 
 const features: Feature[] = [
   {
-    icon: <Search className="h-6 w-6" />,
-    title: "Smart Matching",
+    icon: <Wand2 className="h-6 w-6" />,
+    title: "AI Music Generation",
     description:
-      "Our AI matches venues with the perfect artists based on genre, budget, location, and event type.",
+      "Create unique compositions with our advanced AI models. Generate melodies, harmonies, and beats in seconds.",
     gradient: "from-violet-500 to-purple-500",
-    forVenue: true,
-    forArtist: true,
   },
   {
-    icon: <Calendar className="h-6 w-6" />,
-    title: "Easy Scheduling",
+    icon: <Users className="h-6 w-6" />,
+    title: "Real-time Collaboration",
     description:
-      "Post gigs with specific dates, times, and requirements. Artists can apply with one click.",
+      "Work together with artists from around the world. Share projects, tracks, and ideas seamlessly.",
     gradient: "from-blue-500 to-cyan-500",
-    forVenue: true,
   },
   {
-    icon: <MessageSquare className="h-6 w-6" />,
-    title: "Direct Communication",
+    icon: <Globe className="h-6 w-6" />,
+    title: "Global Distribution",
     description:
-      "Chat directly with venues or artists. Negotiate terms, share setlists, and finalize details.",
+      "Distribute your music to all major streaming platforms with just one click. Reach millions of listeners.",
     gradient: "from-emerald-500 to-teal-500",
-    forVenue: true,
-    forArtist: true,
+  },
+  {
+    icon: <Zap className="h-6 w-6" />,
+    title: "Lightning Fast",
+    description:
+      "Export and process tracks in seconds. Our cloud infrastructure ensures blazing fast performance.",
+    gradient: "from-amber-500 to-orange-500",
   },
   {
     icon: <Shield className="h-6 w-6" />,
-    title: "Verified Profiles",
+    title: "Copyright Protection",
     description:
-      "All artists and venues are verified. View portfolios, reviews, and performance history.",
-    gradient: "from-amber-500 to-orange-500",
-    forVenue: true,
-    forArtist: true,
-  },
-  {
-    icon: <CreditCard className="h-6 w-6" />,
-    title: "Secure Payments",
-    description:
-      "Escrow payments protect both parties. Artists get paid on time, venues get guaranteed shows.",
+      "Your music is safe with us. Advanced copyright protection and ownership verification included.",
     gradient: "from-rose-500 to-pink-500",
-    forVenue: true,
-    forArtist: true,
   },
   {
-    icon: <Star className="h-6 w-6" />,
-    title: "Reviews & Ratings",
+    icon: <BarChart3 className="h-6 w-6" />,
+    title: "Analytics Dashboard",
     description:
-      "Build your reputation with authentic reviews. Top-rated profiles get featured and more bookings.",
+      "Track your streams, earnings, and audience growth with detailed real-time analytics.",
     gradient: "from-indigo-500 to-violet-500",
-    forVenue: true,
-    forArtist: true,
   },
 ];
 
@@ -107,7 +94,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             className="text-sm font-semibold uppercase tracking-wider text-primary"
           >
-            Platform Features
+            Features
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -117,7 +104,7 @@ export function FeaturesSection() {
             className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
           >
             Everything You Need to{" "}
-            <span className="text-gradient">Book & Perform</span>
+            <span className="text-gradient">Create & Share</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -126,8 +113,8 @@ export function FeaturesSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            Whether you&apos;re a venue looking for talent or an artist seeking opportunities, 
-            we&apos;ve got you covered.
+            Powerful tools and features designed to help you create, collaborate,
+            and succeed in the music industry.
           </motion.p>
         </div>
 
@@ -165,20 +152,6 @@ export function FeaturesSection() {
               <p className="mt-2 text-sm text-muted-foreground">
                 {feature.description}
               </p>
-
-              {/* Tags */}
-              <div className="mt-4 flex gap-2">
-                {feature.forVenue && (
-                  <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
-                    For Venues
-                  </span>
-                )}
-                {feature.forArtist && (
-                  <span className="rounded-full bg-pink-500/10 px-2 py-0.5 text-xs font-medium text-pink-400">
-                    For Artists
-                  </span>
-                )}
-              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -186,3 +159,4 @@ export function FeaturesSection() {
     </section>
   );
 }
+

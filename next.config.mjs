@@ -7,12 +7,9 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'placekitten.com',
       },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
     ],
   },
 };
 
 export default nextConfig;
+

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Building2, Mic2 } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function CtaSection() {
@@ -29,7 +29,7 @@ export function CtaSection() {
               className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm"
             >
               <Sparkles className="h-4 w-4" />
-              Join 5,000+ Venues & Artists
+              Limited Time Offer - 50% Off Pro Plan
             </motion.div>
 
             <motion.h2
@@ -39,7 +39,7 @@ export function CtaSection() {
               transition={{ delay: 0.3 }}
               className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl"
             >
-              Ready to Transform Your Entertainment?
+              Ready to Transform Your Music?
             </motion.h2>
 
             <motion.p
@@ -49,8 +49,8 @@ export function CtaSection() {
               transition={{ delay: 0.4 }}
               className="mx-auto mt-4 max-w-2xl text-lg text-white/80"
             >
-              Whether you&apos;re looking to book incredible talent or find your next big gig, 
-              GigConnect makes it happen.
+              Join over 10 million musicians already using ZTS Music to create,
+              collaborate, and share their art with the world.
             </motion.p>
 
             <motion.div
@@ -64,8 +64,7 @@ export function CtaSection() {
                 size="xl"
                 className="group bg-white text-primary hover:bg-white/90"
               >
-                <Building2 className="h-5 w-5" />
-                I&apos;m a Venue
+                Start Free Trial
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button
@@ -73,8 +72,7 @@ export function CtaSection() {
                 variant="outline"
                 className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
               >
-                <Mic2 className="h-5 w-5" />
-                I&apos;m an Artist
+                Schedule Demo
               </Button>
             </motion.div>
 
@@ -85,7 +83,7 @@ export function CtaSection() {
               transition={{ delay: 0.6 }}
               className="mt-6 text-sm text-white/60"
             >
-              Free to sign up • No booking fees for first 3 months • Cancel anytime
+              No credit card required • 14-day free trial • Cancel anytime
             </motion.p>
           </div>
         </motion.div>
@@ -93,3 +91,4 @@ export function CtaSection() {
     </section>
   );
 }
+

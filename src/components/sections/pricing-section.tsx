@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Building2, Mic2 } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
 interface PricingPlan {
   name: string;
@@ -16,112 +15,58 @@ interface PricingPlan {
   buttonText: string;
 }
 
-const venuePlans: PricingPlan[] = [
+const plans: PricingPlan[] = [
   {
     name: "Starter",
-    price: "₹0",
+    price: "$0",
     period: "/month",
-    description: "Perfect for small venues testing the waters.",
+    description: "Perfect for hobbyists and beginners exploring music creation.",
     features: [
-      "3 gig postings per month",
-      "Basic artist search",
-      "In-app messaging",
-      "Standard support",
-      "Basic analytics",
+      "5 AI generations per month",
+      "Basic audio quality (128kbps)",
+      "Community support",
+      "1 project at a time",
+      "Standard templates",
     ],
     buttonText: "Get Started Free",
   },
   {
-    name: "Professional",
-    price: "₹1,999",
+    name: "Pro",
+    price: "$19",
     period: "/month",
-    description: "For venues with regular entertainment needs.",
+    description: "For serious musicians ready to take their craft to the next level.",
     features: [
-      "Unlimited gig postings",
-      "Priority in artist feeds",
-      "Advanced filters & search",
-      "Dedicated account manager",
-      "Detailed analytics dashboard",
-      "Verified venue badge",
-      "Contract templates",
+      "Unlimited AI generations",
+      "HD audio quality (320kbps)",
+      "Priority support",
+      "Unlimited projects",
+      "Advanced templates",
+      "Collaboration tools",
+      "Basic analytics",
     ],
     isPopular: true,
     buttonText: "Start Pro Trial",
   },
   {
     name: "Enterprise",
-    price: "Custom",
-    period: "",
-    description: "For hotel chains and large venue networks.",
+    price: "$49",
+    period: "/month",
+    description: "Full suite of tools for professional studios and labels.",
     features: [
-      "Everything in Professional",
-      "Multi-venue management",
+      "Everything in Pro",
+      "Lossless audio (FLAC)",
+      "24/7 dedicated support",
+      "White-label exports",
       "API access",
-      "Custom integrations",
-      "White-label options",
-      "Bulk booking discounts",
-      "24/7 priority support",
-      "Dedicated success team",
+      "Advanced analytics",
+      "Team management",
+      "Custom AI training",
     ],
     buttonText: "Contact Sales",
   },
 ];
 
-const artistPlans: PricingPlan[] = [
-  {
-    name: "Free",
-    price: "₹0",
-    period: "/forever",
-    description: "Start your journey and get discovered.",
-    features: [
-      "Create your profile",
-      "Apply to 5 gigs/month",
-      "Basic profile analytics",
-      "In-app messaging",
-      "Community access",
-    ],
-    buttonText: "Join Free",
-  },
-  {
-    name: "Pro Artist",
-    price: "₹499",
-    period: "/month",
-    description: "Stand out and get more bookings.",
-    features: [
-      "Unlimited gig applications",
-      "Featured profile placement",
-      "Priority in search results",
-      "Advanced analytics",
-      "Portfolio showcase",
-      "Verified artist badge",
-      "Early access to new gigs",
-    ],
-    isPopular: true,
-    buttonText: "Go Pro",
-  },
-  {
-    name: "Band/Agency",
-    price: "₹1,499",
-    period: "/month",
-    description: "Manage multiple artists or band members.",
-    features: [
-      "Everything in Pro",
-      "Multi-profile management",
-      "Team collaboration tools",
-      "Bulk booking management",
-      "Revenue analytics",
-      "Custom branding",
-      "Dedicated support",
-      "Commission tracking",
-    ],
-    buttonText: "Contact Us",
-  },
-];
-
 export function PricingSection() {
-  const [activeTab, setActiveTab] = useState<"venue" | "artist">("venue");
-  const plans = activeTab === "venue" ? venuePlans : artistPlans;
-
   return (
     <section id="pricing" className="relative py-24 sm:py-32">
       {/* Background */}
@@ -147,7 +92,7 @@ export function PricingSection() {
             transition={{ delay: 0.1 }}
             className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
           >
-            Plans for <span className="text-gradient">Every Stage</span>
+            Simple, <span className="text-gradient">Transparent</span> Pricing
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -156,52 +101,12 @@ export function PricingSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            Flexible pricing for venues and artists. Start free, scale as you grow.
+            Choose the plan that fits your needs. Upgrade or downgrade anytime.
           </motion.p>
-
-          {/* Tab Switcher */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 inline-flex rounded-full border border-border bg-card/50 p-1 backdrop-blur-sm"
-          >
-            <button
-              onClick={() => setActiveTab("venue")}
-              className={cn(
-                "flex items-center gap-2 rounded-full px-6 py-2 text-sm font-medium transition-all",
-                activeTab === "venue"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              <Building2 className="h-4 w-4" />
-              For Venues
-            </button>
-            <button
-              onClick={() => setActiveTab("artist")}
-              className={cn(
-                "flex items-center gap-2 rounded-full px-6 py-2 text-sm font-medium transition-all",
-                activeTab === "artist"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              <Mic2 className="h-4 w-4" />
-              For Artists
-            </button>
-          </motion.div>
         </div>
 
         {/* Pricing Cards */}
-        <motion.div
-          key={activeTab}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-16 grid gap-8 lg:grid-cols-3"
-        >
+        <div className="mt-16 grid gap-8 lg:grid-cols-3">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -269,8 +174,9 @@ export function PricingSection() {
               </Button>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
+

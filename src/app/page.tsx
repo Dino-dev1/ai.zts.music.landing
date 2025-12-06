@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { FeaturesSection } from "@/components/sections/features-section";
@@ -6,7 +7,6 @@ import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { CtaSection } from "@/components/sections/cta-section";
-import { ParallaxReveal } from "@/components/ui/parallax-reveal";
 
 function LoadingFallback() {
   return (
@@ -20,9 +20,12 @@ export default function HomePage() {
   return (
     <>
       <Suspense fallback={<LoadingFallback />}>
-        <HeroSection />
+        <Navbar />
       </Suspense>
-      <ParallaxReveal>
+      <main>
+        <Suspense fallback={<LoadingFallback />}>
+          <HeroSection />
+        </Suspense>
         <Suspense fallback={<LoadingFallback />}>
           <FeaturesSection />
         </Suspense>
@@ -38,8 +41,9 @@ export default function HomePage() {
         <Suspense fallback={<LoadingFallback />}>
           <CtaSection />
         </Suspense>
-        <Footer />
-      </ParallaxReveal>
+      </main>
+      <Footer />
     </>
   );
 }
+

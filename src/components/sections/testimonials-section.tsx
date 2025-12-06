@@ -2,74 +2,63 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Star, Building2, Mic2 } from "lucide-react";
+import { Star } from "lucide-react";
 
 interface Testimonial {
   name: string;
   role: string;
-  type: "venue" | "artist";
   avatar: string;
   content: string;
   rating: number;
-  venue?: string;
 }
 
 const testimonials: Testimonial[] = [
   {
-    name: "Priya Sharma",
-    role: "Events Manager",
-    type: "venue",
-    venue: "The Grand Ballroom, Mumbai",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
+    name: "Sarah Chen",
+    role: "Independent Artist",
+    avatar: "https://placekitten.com/100/100",
     content:
-      "GigConnect transformed how we book entertainment. We went from spending days calling agencies to finding perfect artists in hours. The quality of performers has been exceptional.",
+      "ZTS Music completely transformed my workflow. What used to take me days now takes hours. The AI understands exactly what I'm going for.",
     rating: 5,
   },
   {
-    name: "Rahul Verma",
-    role: "Solo Guitarist",
-    type: "artist",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+    name: "Marcus Johnson",
+    role: "Music Producer",
+    avatar: "https://placekitten.com/101/101",
     content:
-      "As an independent artist, finding consistent gigs was my biggest challenge. Now I have bookings lined up weeks in advance. The secure payment system gives me peace of mind.",
+      "I was skeptical about AI in music, but this platform changed my mind. It's like having a brilliant collaborator available 24/7.",
     rating: 5,
   },
   {
-    name: "Ananya Desai",
-    role: "Restaurant Owner",
-    type: "venue",
-    venue: "Rhythm Café, Bangalore",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+    name: "Elena Rodriguez",
+    role: "Singer-Songwriter",
+    avatar: "https://placekitten.com/102/102",
     content:
-      "Live music has increased our weekend footfall by 40%. GigConnect makes it so easy to find artists who match our vibe. Our customers love the variety!",
+      "The distribution features alone are worth it. I went from 100 monthly listeners to 50,000 in just three months using ZTS Music.",
     rating: 5,
   },
   {
-    name: "Vikram Singh",
-    role: "Band Leader - The Groove Collective",
-    type: "artist",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+    name: "David Kim",
+    role: "DJ & Remix Artist",
+    avatar: "https://placekitten.com/103/103",
     content:
-      "Managing bookings for a 6-piece band was a nightmare before. The platform handles scheduling, payments, and communication seamlessly. Our earnings have doubled!",
+      "Real-time collaboration has been a game-changer for my remote projects. The quality is indistinguishable from studio recordings.",
     rating: 5,
   },
   {
-    name: "Meera Patel",
-    role: "Hotel Entertainment Director",
-    type: "venue",
-    venue: "Sunset Resort, Goa",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
+    name: "Aisha Patel",
+    role: "Music Educator",
+    avatar: "https://placekitten.com/104/104",
     content:
-      "We host events every weekend and need diverse talent. GigConnect&apos;s filtering by genre, budget, and availability saves us hours. The verified reviews are invaluable.",
+      "I use ZTS Music with my students to teach composition. It makes complex concepts accessible and keeps them engaged.",
     rating: 5,
   },
   {
-    name: "Arjun Kapoor",
-    role: "DJ & Producer",
-    type: "artist",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+    name: "James Thompson",
+    role: "Film Composer",
+    avatar: "https://placekitten.com/105/105",
     content:
-      "The platform helped me break into the hotel circuit which was impossible before. The portfolio feature lets venues see exactly what I bring to the table.",
+      "For scoring deadlines, ZTS Music is invaluable. I can quickly generate variations and fine-tune exactly what directors need.",
     rating: 5,
   },
 ];
@@ -92,7 +81,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             className="text-sm font-semibold uppercase tracking-wider text-primary"
           >
-            Success Stories
+            Testimonials
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -101,7 +90,7 @@ export function TestimonialsSection() {
             transition={{ delay: 0.1 }}
             className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
           >
-            Trusted by <span className="text-gradient">Thousands</span>
+            Loved by <span className="text-gradient">Musicians</span> Worldwide
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -110,7 +99,8 @@ export function TestimonialsSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            See what venues and artists are saying about their experience with GigConnect.
+            Join thousands of artists who have transformed their music careers
+            with ZTS Music.
           </motion.p>
         </div>
 
@@ -125,30 +115,14 @@ export function TestimonialsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-card"
             >
-              {/* Type Badge */}
-              <div className="flex items-center justify-between">
-                <div className="flex gap-1">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-amber-400 text-amber-400"
-                    />
-                  ))}
-                </div>
-                <span
-                  className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
-                    testimonial.type === "venue"
-                      ? "bg-primary/10 text-primary"
-                      : "bg-pink-500/10 text-pink-400"
-                  }`}
-                >
-                  {testimonial.type === "venue" ? (
-                    <Building2 className="h-3 w-3" />
-                  ) : (
-                    <Mic2 className="h-3 w-3" />
-                  )}
-                  {testimonial.type === "venue" ? "Venue" : "Artist"}
-                </span>
+              {/* Rating */}
+              <div className="flex gap-1">
+                {Array.from({ length: testimonial.rating }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4 fill-amber-400 text-amber-400"
+                  />
+                ))}
               </div>
 
               {/* Content */}
@@ -169,11 +143,8 @@ export function TestimonialsSection() {
                   <div className="font-medium text-foreground">
                     {testimonial.name}
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-sm text-muted-foreground">
                     {testimonial.role}
-                    {testimonial.venue && (
-                      <span className="block text-primary/80">{testimonial.venue}</span>
-                    )}
                   </div>
                 </div>
               </div>
@@ -184,3 +155,4 @@ export function TestimonialsSection() {
     </section>
   );
 }
+

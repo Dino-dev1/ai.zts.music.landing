@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, Search, Handshake, Mic2, Send, CheckCircle2, Banknote } from "lucide-react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { Upload, Sparkles, Share2 } from "lucide-react";
 
 interface Step {
   number: string;
@@ -12,72 +10,31 @@ interface Step {
   description: string;
 }
 
-const venueSteps: Step[] = [
+const steps: Step[] = [
   {
     number: "01",
-    icon: <Building2 className="h-8 w-8" />,
-    title: "Create Your Venue Profile",
+    icon: <Upload className="h-8 w-8" />,
+    title: "Upload Your Idea",
     description:
-      "Sign up and add your venue details - location, capacity, ambiance, and the type of events you host.",
+      "Start with a melody, lyrics, or just an idea. Upload your samples or describe what you want to create.",
   },
   {
     number: "02",
-    icon: <Send className="h-8 w-8" />,
-    title: "Post Your Gig",
+    icon: <Sparkles className="h-8 w-8" />,
+    title: "AI Enhancement",
     description:
-      "Describe the event, date, budget, and preferred genre. Our platform broadcasts it to relevant artists.",
+      "Our AI analyzes your input and enhances it with professional arrangements, mixing, and mastering.",
   },
   {
     number: "03",
-    icon: <Search className="h-8 w-8" />,
-    title: "Review Applications",
+    icon: <Share2 className="h-8 w-8" />,
+    title: "Share & Monetize",
     description:
-      "Browse artist profiles, listen to demos, read reviews, and shortlist your favorites.",
-  },
-  {
-    number: "04",
-    icon: <Handshake className="h-8 w-8" />,
-    title: "Book & Enjoy",
-    description:
-      "Finalize the booking, handle payments securely, and host an unforgettable event.",
-  },
-];
-
-const artistSteps: Step[] = [
-  {
-    number: "01",
-    icon: <Mic2 className="h-8 w-8" />,
-    title: "Build Your Profile",
-    description:
-      "Showcase your talent - upload demos, photos, videos, set your rates, and define your genre.",
-  },
-  {
-    number: "02",
-    icon: <Search className="h-8 w-8" />,
-    title: "Discover Gigs",
-    description:
-      "Browse gigs by location, date, budget, and genre. Get notified about opportunities that match your profile.",
-  },
-  {
-    number: "03",
-    icon: <CheckCircle2 className="h-8 w-8" />,
-    title: "Apply & Get Selected",
-    description:
-      "Send your application with a personalized pitch. Chat with venues and negotiate terms.",
-  },
-  {
-    number: "04",
-    icon: <Banknote className="h-8 w-8" />,
-    title: "Perform & Get Paid",
-    description:
-      "Deliver an amazing performance. Payments are released securely after the gig.",
+      "Distribute your finished track to all major platforms and start earning from your music.",
   },
 ];
 
 export function HowItWorksSection() {
-  const [activeTab, setActiveTab] = useState<"venue" | "artist">("venue");
-  const steps = activeTab === "venue" ? venueSteps : artistSteps;
-
   return (
     <section
       id="how-it-works"
@@ -107,7 +64,8 @@ export function HowItWorksSection() {
             transition={{ delay: 0.1 }}
             className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
           >
-            From Search to <span className="text-gradient">Stage</span> in Minutes
+            From Idea to <span className="text-gradient">Hit Song</span> in
+            Minutes
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -116,40 +74,9 @@ export function HowItWorksSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            A simple, streamlined process for both venues and artists.
+            Our streamlined process makes music creation accessible to everyone,
+            from beginners to professionals.
           </motion.p>
-
-          {/* Tab Switcher */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 inline-flex rounded-full border border-border bg-card/50 p-1 backdrop-blur-sm"
-          >
-            <button
-              onClick={() => setActiveTab("venue")}
-              className={cn(
-                "rounded-full px-6 py-2 text-sm font-medium transition-all",
-                activeTab === "venue"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              I&apos;m a Venue
-            </button>
-            <button
-              onClick={() => setActiveTab("artist")}
-              className={cn(
-                "rounded-full px-6 py-2 text-sm font-medium transition-all",
-                activeTab === "artist"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              I&apos;m an Artist
-            </button>
-          </motion.div>
         </div>
 
         {/* Steps */}
@@ -158,13 +85,7 @@ export function HowItWorksSection() {
             {/* Connecting line */}
             <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-border to-transparent lg:block" />
 
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-12 lg:space-y-24"
-            >
+            <div className="space-y-12 lg:space-y-24">
               {steps.map((step, index) => (
                 <motion.div
                   key={step.number}
@@ -205,10 +126,11 @@ export function HowItWorksSection() {
                   <div className="hidden flex-1 lg:block" />
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
