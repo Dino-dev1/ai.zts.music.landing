@@ -1,5 +1,4 @@
-# ZTS Music Landing Page V1
-
+# ZTS Music Landing Page
 A modern, AI-powered music platform landing page built with Next.js 15, TypeScript, Tailwind CSS, shadcn/ui, and Framer Motion.
 
 ## Tech Stack
