@@ -32,7 +32,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <Sparkles className="h-4 w-4" />
-            AI-Powered Music Platform
+            Live Music Gig Marketplace
           </span>
         </motion.div>
 
@@ -43,9 +43,9 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-8 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          Create Music That
+          Connect Artists with
           <span className="relative">
-            <span className="text-gradient"> Moves </span>
+            <span className="text-gradient"> Live Gig </span>
             <motion.span
               className="absolute -bottom-2 left-0 right-0 h-1 rounded-full bg-gradient-to-r from-primary via-purple-400 to-pink-500"
               initial={{ scaleX: 0 }}
@@ -53,7 +53,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
             />
           </span>
-          the World
+          Opportunities
         </motion.h1>
 
         {/* Subheading */}
@@ -63,9 +63,9 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl"
         >
-          The ultimate AI-powered platform for artists, producers, and music
-          enthusiasts. Create, collaborate, and share your music with millions
-          of fans worldwide.
+          The ultimate platform connecting talented artists with venues. Book live
+          music for your restaurant, rooftop, cafe, or bar. Find performing gigs
+          at top venues across India.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -79,12 +79,12 @@ export function HeroSection() {
             size="xl"
             className="group bg-gradient-to-r from-primary to-pink-500 hover:opacity-90"
           >
-            Start Creating
+            Find Gigs
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button variant="outline" size="xl" className="group">
             <Play className="h-5 w-5 transition-transform group-hover:scale-110" />
-            Watch Demo
+            Post a Gig
           </Button>
         </motion.div>
 
@@ -96,10 +96,10 @@ export function HeroSection() {
           className="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4"
         >
           {[
-            { value: "10M+", label: "Active Users" },
-            { value: "500K+", label: "Songs Created" },
-            { value: "150+", label: "Countries" },
-            { value: "99.9%", label: "Uptime" },
+            { value: "5000+", label: "Active Artists" },
+            { value: "2000+", label: "Gigs Posted" },
+            { value: "50+", label: "Cities" },
+            { value: "98%", label: "Success Rate" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -121,4 +121,5 @@ export function HeroSection() {
     </section>
   );
 }
+
 

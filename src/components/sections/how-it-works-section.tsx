@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Upload, Sparkles, Share2 } from "lucide-react";
+import { UserPlus, Search, HandshakeIcon, Store, ClipboardCheck, Music } from "lucide-react";
 
 interface Step {
   number: string;
@@ -10,27 +10,51 @@ interface Step {
   description: string;
 }
 
-const steps: Step[] = [
+const artistSteps: Step[] = [
   {
     number: "01",
-    icon: <Upload className="h-8 w-8" />,
-    title: "Upload Your Idea",
+    icon: <UserPlus className="h-8 w-8" />,
+    title: "Create Your Profile",
     description:
-      "Start with a melody, lyrics, or just an idea. Upload your samples or describe what you want to create.",
+      "Sign up and build your artist profile. Upload audio samples, portfolio images, and showcase your talent.",
   },
   {
     number: "02",
-    icon: <Sparkles className="h-8 w-8" />,
-    title: "AI Enhancement",
+    icon: <Search className="h-8 w-8" />,
+    title: "Browse & Apply",
     description:
-      "Our AI analyzes your input and enhances it with professional arrangements, mixing, and mastering.",
+      "Find gigs near you based on location, budget, and date. Apply with your bid and proposal to stand out.",
   },
   {
     number: "03",
-    icon: <Share2 className="h-8 w-8" />,
-    title: "Share & Monetize",
+    icon: <HandshakeIcon className="h-8 w-8" />,
+    title: "Get Booked & Perform",
     description:
-      "Distribute your finished track to all major platforms and start earning from your music.",
+      "Once accepted, confirm details with the venue. Show up, perform, and build your reputation for future gigs.",
+  },
+];
+
+const venueSteps: Step[] = [
+  {
+    number: "01",
+    icon: <Store className="h-8 w-8" />,
+    title: "Post Your Gig",
+    description:
+      "Create a gig listing with event details, budget range, venue location, and preferred artist genres.",
+  },
+  {
+    number: "02",
+    icon: <ClipboardCheck className="h-8 w-8" />,
+    title: "Review Applications",
+    description:
+      "Browse artist profiles, listen to samples, and review bids. Select the perfect artist for your venue.",
+  },
+  {
+    number: "03",
+    icon: <Music className="h-8 w-8" />,
+    title: "Book & Enjoy",
+    description:
+      "Confirm the booking with your chosen artist. Enjoy live music at your venue and delight your customers.",
   },
 ];
 
@@ -64,8 +88,7 @@ export function HowItWorksSection() {
             transition={{ delay: 0.1 }}
             className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
           >
-            From Idea to <span className="text-gradient">Hit Song</span> in
-            Minutes
+            Simple Process for <span className="text-gradient">Everyone</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -74,19 +97,24 @@ export function HowItWorksSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            Our streamlined process makes music creation accessible to everyone,
-            from beginners to professionals.
+            Whether you&apos;re an artist looking for gigs or a venue owner seeking talent,
+            our platform makes it easy.
           </motion.p>
         </div>
 
-        {/* Steps */}
-        <div className="mt-16 lg:mt-24">
+        {/* For Artists */}
+        <div className="mt-16 lg:mt-20">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center text-2xl font-bold text-foreground"
+          >
+            For <span className="text-gradient">Artists</span>
+          </motion.h3>
           <div className="relative">
-            {/* Connecting line */}
-            <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-border to-transparent lg:block" />
-
-            <div className="space-y-12 lg:space-y-24">
-              {steps.map((step, index) => (
+            <div className="space-y-12 lg:space-y-16">
+              {artistSteps.map((step, index) => (
                 <motion.div
                   key={step.number}
                   initial={{ opacity: 0, y: 40 }}
@@ -129,8 +157,65 @@ export function HowItWorksSection() {
             </div>
           </div>
         </div>
+
+        {/* For Venue Owners */}
+        <div className="mt-24 lg:mt-32">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center text-2xl font-bold text-foreground"
+          >
+            For <span className="text-gradient">Venue Owners</span>
+          </motion.h3>
+          <div className="relative">
+            <div className="space-y-12 lg:space-y-16">
+              {venueSteps.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className={`flex flex-col items-center gap-8 lg:flex-row ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Content */}
+                  <div
+                    className={`flex-1 text-center lg:text-left ${
+                      index % 2 === 1 ? "lg:text-right" : ""
+                    }`}
+                  >
+                    <span className="inline-block text-6xl font-bold text-primary/20">
+                      {step.number}
+                    </span>
+                    <h3 className="mt-4 text-2xl font-bold text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 max-w-md text-muted-foreground">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  {/* Icon */}
+                  <div className="relative flex h-24 w-24 shrink-0 items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-xl" />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-border bg-card text-violet-500">
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="hidden flex-1 lg:block" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+
 

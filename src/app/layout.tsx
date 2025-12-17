@@ -15,17 +15,17 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ZTS Music | AI-Powered Music Platform",
+  title: "ZTS Gigs | Live Music Marketplace - Connect Artists with Venues",
   description:
-    "Discover the future of music with ZTS Music - Your AI-powered music platform for artists, producers, and music enthusiasts.",
-  keywords: ["music", "AI", "platform", "artists", "producers", "streaming"],
-  authors: [{ name: "ZTS Music" }],
+    "India's premier live music gig marketplace. Find performing opportunities at restaurants, cafes, bars & rooftops. Book talented artists for your venue.",
+  keywords: ["live music", "gigs", "artists", "venues", "booking", "performances", "restaurants", "bars", "cafes", "India"],
+  authors: [{ name: "ZTS Gigs" }],
   openGraph: {
-    title: "ZTS Music | AI-Powered Music Platform",
+    title: "ZTS Gigs | Live Music Marketplace",
     description:
-      "Discover the future of music with ZTS Music - Your AI-powered music platform.",
+      "Connect talented artists with live performance opportunities at venues across India. Find gigs or book artists seamlessly.",
     type: "website",
-    locale: "en_US",
+    locale: "en_IN",
   },
 };
 
@@ -44,4 +44,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 

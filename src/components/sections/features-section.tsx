@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import {
-  Wand2,
+  Search,
   Users,
-  Globe,
+  MapPin,
   Zap,
   Shield,
-  BarChart3,
+  IndianRupee,
 } from "lucide-react";
 
 interface Feature {
@@ -19,45 +19,45 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    icon: <Wand2 className="h-6 w-6" />,
-    title: "AI Music Generation",
+    icon: <Search className="h-6 w-6" />,
+    title: "Smart Gig Discovery",
     description:
-      "Create unique compositions with our advanced AI models. Generate melodies, harmonies, and beats in seconds.",
+      "Find live performance opportunities at restaurants, rooftops, cafes, and bars. Filter by city, budget, date, and genre.",
     gradient: "from-violet-500 to-purple-500",
   },
   {
     icon: <Users className="h-6 w-6" />,
-    title: "Real-time Collaboration",
+    title: "Verified Artist Profiles",
     description:
-      "Work together with artists from around the world. Share projects, tracks, and ideas seamlessly.",
+      "Showcase your talent with portfolio images, audio samples, and performance videos. Build your reputation with verified credentials.",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
-    icon: <Globe className="h-6 w-6" />,
-    title: "Global Distribution",
+    icon: <MapPin className="h-6 w-6" />,
+    title: "Location-Based Matching",
     description:
-      "Distribute your music to all major streaming platforms with just one click. Reach millions of listeners.",
+      "Discover gigs near you with geospatial search. Find opportunities in your city or explore new markets across India.",
     gradient: "from-emerald-500 to-teal-500",
   },
   {
     icon: <Zap className="h-6 w-6" />,
-    title: "Lightning Fast",
+    title: "Real-Time Bidding",
     description:
-      "Export and process tracks in seconds. Our cloud infrastructure ensures blazing fast performance.",
+      "Artists bid on gigs with instant notifications. Venue owners review applications and accept the best fit for their event.",
     gradient: "from-amber-500 to-orange-500",
   },
   {
     icon: <Shield className="h-6 w-6" />,
-    title: "Copyright Protection",
+    title: "Secure Booking System",
     description:
-      "Your music is safe with us. Advanced copyright protection and ownership verification included.",
+      "Safe and transparent booking process. Both artists and venue owners are verified for trust and reliability.",
     gradient: "from-rose-500 to-pink-500",
   },
   {
-    icon: <BarChart3 className="h-6 w-6" />,
-    title: "Analytics Dashboard",
+    icon: <IndianRupee className="h-6 w-6" />,
+    title: "Flexible Budget Options",
     description:
-      "Track your streams, earnings, and audience growth with detailed real-time analytics.",
+      "Set your budget range or bid according to your rates. Transparent pricing helps both parties find the perfect match.",
     gradient: "from-indigo-500 to-violet-500",
   },
 ];
@@ -104,7 +104,7 @@ export function FeaturesSection() {
             className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
           >
             Everything You Need to{" "}
-            <span className="text-gradient">Create & Share</span>
+            <span className="text-gradient">Book & Perform</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -113,8 +113,8 @@ export function FeaturesSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            Powerful tools and features designed to help you create, collaborate,
-            and succeed in the music industry.
+            Powerful tools connecting artists with live performance opportunities
+            at venues across India. Find gigs or book talent seamlessly.
           </motion.p>
         </div>
 
@@ -159,4 +159,5 @@ export function FeaturesSection() {
     </section>
   );
 }
+
 

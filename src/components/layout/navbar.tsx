@@ -40,7 +40,7 @@ export function Navbar() {
             <Music2 className="h-6 w-6 text-white" />
           </motion.div>
           <span className="text-xl font-bold tracking-tight">
-            ZTS <span className="text-gradient">Music</span>
+            ZTS <span className="text-gradient">Gigs</span>
           </span>
         </Link>
 
@@ -122,4 +122,5 @@ export function Navbar() {
     </motion.header>
   );
 }
+
 

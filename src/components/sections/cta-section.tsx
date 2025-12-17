@@ -29,7 +29,7 @@ export function CtaSection() {
               className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm"
             >
               <Sparkles className="h-4 w-4" />
-              Limited Time Offer - 50% Off Pro Plan
+              5000+ Artists • 2000+ Gigs Posted
             </motion.div>
 
             <motion.h2
@@ -39,7 +39,7 @@ export function CtaSection() {
               transition={{ delay: 0.3 }}
               className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl"
             >
-              Ready to Transform Your Music?
+              Ready to Start Your Journey?
             </motion.h2>
 
             <motion.p
@@ -49,8 +49,8 @@ export function CtaSection() {
               transition={{ delay: 0.4 }}
               className="mx-auto mt-4 max-w-2xl text-lg text-white/80"
             >
-              Join over 10 million musicians already using ZTS Music to create,
-              collaborate, and share their art with the world.
+              Whether you&apos;re an artist looking for gigs or a venue seeking talent,
+              join India&apos;s fastest-growing live music marketplace today.
             </motion.p>
 
             <motion.div
@@ -64,7 +64,7 @@ export function CtaSection() {
                 size="xl"
                 className="group bg-white text-primary hover:bg-white/90"
               >
-                Start Free Trial
+                Find Gigs Now
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button
@@ -72,7 +72,7 @@ export function CtaSection() {
                 variant="outline"
                 className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
               >
-                Schedule Demo
+                Post Your First Gig
               </Button>
             </motion.div>
 
@@ -83,7 +83,7 @@ export function CtaSection() {
               transition={{ delay: 0.6 }}
               className="mt-6 text-sm text-white/60"
             >
-              No credit card required • 14-day free trial • Cancel anytime
+              Free for artists • No booking fees • Verified profiles only
             </motion.p>
           </div>
         </motion.div>
@@ -91,4 +91,5 @@ export function CtaSection() {
     </section>
   );
 }
+
 

@@ -17,52 +17,54 @@ interface PricingPlan {
 
 const plans: PricingPlan[] = [
   {
-    name: "Starter",
-    price: "$0",
+    name: "Artists - Free",
+    price: "₹0",
     period: "/month",
-    description: "Perfect for hobbyists and beginners exploring music creation.",
+    description: "Perfect for artists starting their journey in live performances.",
     features: [
-      "5 AI generations per month",
-      "Basic audio quality (128kbps)",
+      "Browse unlimited gigs",
+      "Apply to up to 10 gigs/month",
+      "Basic profile with 2 audio samples",
       "Community support",
-      "1 project at a time",
-      "Standard templates",
+      "10% platform fee on bookings",
+      "Email notifications",
     ],
-    buttonText: "Get Started Free",
+    buttonText: "Start as Artist",
   },
   {
-    name: "Pro",
-    price: "$19",
+    name: "Artists - Pro",
+    price: "₹499",
     period: "/month",
-    description: "For serious musicians ready to take their craft to the next level.",
+    description: "For serious artists looking to maximize their gig opportunities.",
     features: [
-      "Unlimited AI generations",
-      "HD audio quality (320kbps)",
+      "Unlimited gig applications",
+      "Priority in search results",
+      "Premium profile with 5 audio samples",
+      "Portfolio with unlimited images",
+      "Only 5% platform fee",
+      "Real-time bid notifications",
+      "Analytics dashboard",
       "Priority support",
-      "Unlimited projects",
-      "Advanced templates",
-      "Collaboration tools",
-      "Basic analytics",
     ],
     isPopular: true,
-    buttonText: "Start Pro Trial",
+    buttonText: "Go Pro",
   },
   {
-    name: "Enterprise",
-    price: "$49",
+    name: "Venue Owners",
+    price: "₹999",
     period: "/month",
-    description: "Full suite of tools for professional studios and labels.",
+    description: "Full access for restaurants, bars, cafes, and event venues.",
     features: [
-      "Everything in Pro",
-      "Lossless audio (FLAC)",
-      "24/7 dedicated support",
-      "White-label exports",
-      "API access",
-      "Advanced analytics",
-      "Team management",
-      "Custom AI training",
+      "Post unlimited gigs",
+      "Browse verified artist profiles",
+      "Review applications & bids",
+      "Secure booking system",
+      "Multiple venue management",
+      "Priority artist matching",
+      "Dedicated account manager",
+      "24/7 support",
     ],
-    buttonText: "Contact Sales",
+    buttonText: "Post Your First Gig",
   },
 ];
 
@@ -101,7 +103,8 @@ export function PricingSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            Choose the plan that fits your needs. Upgrade or downgrade anytime.
+            Whether you&apos;re an artist or venue owner, we have plans that fit your needs.
+            Start free and upgrade anytime.
           </motion.p>
         </div>
 
@@ -179,4 +182,5 @@ export function PricingSection() {
     </section>
   );
 }
+
 

@@ -14,51 +14,51 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Sarah Chen",
-    role: "Independent Artist",
+    name: "Priya Sharma",
+    role: "Solo Singer, Mumbai",
     avatar: "https://placekitten.com/100/100",
     content:
-      "ZTS Music completely transformed my workflow. What used to take me days now takes hours. The AI understands exactly what I'm going for.",
+      "I've booked 15+ gigs in 3 months through ZTS! The platform makes it so easy to find venues that match my style. Finally earning from my passion!",
     rating: 5,
   },
   {
-    name: "Marcus Johnson",
-    role: "Music Producer",
+    name: "Rajesh Khanna",
+    role: "The Rooftop Lounge, Delhi",
     avatar: "https://placekitten.com/101/101",
     content:
-      "I was skeptical about AI in music, but this platform changed my mind. It's like having a brilliant collaborator available 24/7.",
+      "Finding quality artists was always a hassle. Now I can browse portfolios, listen to samples, and book the perfect artist for my venue in minutes.",
     rating: 5,
   },
   {
-    name: "Elena Rodriguez",
-    role: "Singer-Songwriter",
+    name: "DJ Arjun",
+    role: "DJ & Producer, Bangalore",
     avatar: "https://placekitten.com/102/102",
     content:
-      "The distribution features alone are worth it. I went from 100 monthly listeners to 50,000 in just three months using ZTS Music.",
+      "The bidding system is transparent and fair. I've built regular relationships with multiple venues. ZTS helped me turn side gigs into a full-time career!",
     rating: 5,
   },
   {
-    name: "David Kim",
-    role: "DJ & Remix Artist",
+    name: "Meera Iyer",
+    role: "Café Harmony, Chennai",
     avatar: "https://placekitten.com/103/103",
     content:
-      "Real-time collaboration has been a game-changer for my remote projects. The quality is indistinguishable from studio recordings.",
+      "We host live music every Friday. ZTS connects us with talented local artists who understand our vibe. Our customer footfall increased by 40%!",
     rating: 5,
   },
   {
-    name: "Aisha Patel",
-    role: "Music Educator",
+    name: "The Acoustic Trio",
+    role: "Band, Pune",
     avatar: "https://placekitten.com/104/104",
     content:
-      "I use ZTS Music with my students to teach composition. It makes complex concepts accessible and keeps them engaged.",
+      "From restaurants to corporate events, ZTS helps us find diverse opportunities. The real-time notifications ensure we never miss a great gig!",
     rating: 5,
   },
   {
-    name: "James Thompson",
-    role: "Film Composer",
+    name: "Vikram Singh",
+    role: "Sky High Restaurant, Jaipur",
     avatar: "https://placekitten.com/105/105",
     content:
-      "For scoring deadlines, ZTS Music is invaluable. I can quickly generate variations and fine-tune exactly what directors need.",
+      "Professional, reliable, and efficient. ZTS verified artist profiles give me confidence. Our guests love the live music experience we now offer!",
     rating: 5,
   },
 ];
@@ -90,7 +90,7 @@ export function TestimonialsSection() {
             transition={{ delay: 0.1 }}
             className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
           >
-            Loved by <span className="text-gradient">Musicians</span> Worldwide
+            Loved by <span className="text-gradient">Artists & Venues</span> Across India
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -99,8 +99,8 @@ export function TestimonialsSection() {
             transition={{ delay: 0.2 }}
             className="mt-4 text-lg text-muted-foreground"
           >
-            Join thousands of artists who have transformed their music careers
-            with ZTS Music.
+            Join thousands of artists and venue owners who have transformed their
+            live music experience with ZTS.
           </motion.p>
         </div>
 
@@ -155,4 +155,5 @@ export function TestimonialsSection() {
     </section>
   );
 }
+
 
