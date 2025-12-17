@@ -61,6 +61,14 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Extra bold heading utility */
+  .heading-hero {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
   }
 }
 
@@ -96,5 +104,3 @@
 ::selection {
   @apply bg-primary/30 text-foreground;
 }
-
-
