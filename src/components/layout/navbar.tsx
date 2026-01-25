@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavLink {
@@ -20,6 +20,18 @@ const navLinks: NavLink[] = [
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    // Hide navbar when scrolling down past 100px, show when scrolling up
+    if (latest > previous && latest > 100) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+  });
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/[0.08] bg-white/[0.03] backdrop-blur-2xl backdrop-saturate-150">
@@ -46,7 +58,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -87,11 +99,11 @@ export function Navbar() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <X className="h-5 w-5" />
+            <X className="h-5 w-5 text-white" />
           ) : (
-            <Menu className="h-5 w-5" />
+            <Menu className="h-5 w-5 text-white" />
           )}
-        </Button>
+        </button>
       </nav>
 
       {/* Mobile Menu */}

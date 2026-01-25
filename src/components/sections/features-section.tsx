@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
-  Wand2,
+  Search,
   Users,
-  Globe,
+  MapPin,
   Zap,
   Shield,
-  BarChart3,
+  IndianRupee,
 } from "lucide-react";
 
 interface Feature {

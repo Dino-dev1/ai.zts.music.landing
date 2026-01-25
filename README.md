@@ -1,6 +1,5 @@
-# ZTS Music Landing Page
-
-Marketing landing page for the ZTS Music platform.
+# ZTS Gigs Landing Page 
+A modern landing page for India's premier live music gig marketplace, built with Next.js 15, TypeScript, Tailwind CSS, shadcn/ui, and Framer Motion.
 
 ## Quick Start
 

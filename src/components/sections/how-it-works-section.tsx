@@ -10,7 +10,7 @@ interface Step {
   description: string;
 }
 
-const steps: Step[] = [
+const artistSteps: Step[] = [
   {
     number: "01",
     icon: <FileText className="h-6 w-6" />,
@@ -175,6 +175,62 @@ export function HowItWorksSection() {
                   {/* Spacer */}
                   <div className="hidden flex-1 lg:block" />
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* For Venue Owners */}
+        <div className="mt-24 lg:mt-32">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center text-2xl font-bold text-foreground"
+          >
+            For <span className="text-gradient">Venue Owners</span>
+          </motion.h3>
+          <div className="relative">
+            <div className="space-y-12 lg:space-y-16">
+              {venueSteps.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className={`flex flex-col items-center gap-8 lg:flex-row ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Content */}
+                  <div
+                    className={`flex-1 text-center lg:text-left ${
+                      index % 2 === 1 ? "lg:text-right" : ""
+                    }`}
+                  >
+                    <span className="inline-block text-6xl font-bold text-primary/20">
+                      {step.number}
+                    </span>
+                    <h3 className="mt-4 text-2xl font-bold text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 max-w-md text-muted-foreground">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  {/* Icon */}
+                  <div className="relative flex h-24 w-24 shrink-0 items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-xl" />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-border bg-card text-violet-500">
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="hidden flex-1 lg:block" />
+                </motion.div>
               ))}
             </div>
           </div>

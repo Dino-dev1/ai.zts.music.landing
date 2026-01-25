@@ -12,7 +12,7 @@ interface FooterSection {
 
 const footerSections: FooterSection[] = [
   {
-    title: "Product",
+    title: "For Artists",
     links: [
       { href: "#features", label: "Features" },
       { href: "#pricing", label: "Pricing" },
@@ -20,7 +20,7 @@ const footerSections: FooterSection[] = [
     ],
   },
   {
-    title: "Company",
+    title: "For Venues",
     links: [
       { href: "#testimonials", label: "About" },
       { href: "#", label: "Blog" },
@@ -110,7 +110,7 @@ export function Footer() {
                 href="#"
                 className="text-xs text-white/30 transition-colors duration-200 hover:text-white/60"
               >
-                Twitter
+                Instagram
               </Link>
               <Link
                 href="#"
