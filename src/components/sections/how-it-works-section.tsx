@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Upload, Sparkles, Share2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { FileText, Users, Calendar } from "lucide-react";
 
 interface Step {
   number: string;
@@ -13,89 +13,139 @@ interface Step {
 const steps: Step[] = [
   {
     number: "01",
-    icon: <Upload className="h-8 w-8" />,
-    title: "Upload Your Idea",
+    icon: <FileText className="h-6 w-6" />,
+    title: "Post Your Gig",
     description:
-      "Start with a melody, lyrics, or just an idea. Upload your samples or describe what you want to create.",
+      "Create a gig listing with your event details, budget, venue, and the type of artist you're looking for.",
   },
   {
     number: "02",
-    icon: <Sparkles className="h-8 w-8" />,
-    title: "AI Enhancement",
+    icon: <Users className="h-6 w-6" />,
+    title: "Review Applications",
     description:
-      "Our AI analyzes your input and enhances it with professional arrangements, mixing, and mastering.",
+      "Talented artists will apply to your gig. Browse their profiles, listen to samples, and read reviews.",
   },
   {
     number: "03",
-    icon: <Share2 className="h-8 w-8" />,
-    title: "Share & Monetize",
+    icon: <Calendar className="h-6 w-6" />,
+    title: "Book & Perform",
     description:
-      "Distribute your finished track to all major platforms and start earning from your music.",
+      "Accept the perfect artist, confirm the booking, and enjoy an amazing live performance at your event.",
   },
 ];
 
 export function HowItWorksSection() {
+  const [visibleSteps, setVisibleSteps] = useState<boolean[]>(new Array(steps.length).fill(false));
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = entry.target.getAttribute("data-index");
+            if (index === "header") {
+              setHeaderVisible(true);
+            } else {
+              const idx = Number(index);
+              setTimeout(() => {
+                setVisibleSteps((prev) => {
+                  const next = [...prev];
+                  next[idx] = true;
+                  return next;
+                });
+              }, idx * 200);
+            }
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const elements = sectionRef.current?.querySelectorAll("[data-index]");
+    elements?.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="how-it-works"
       className="relative overflow-hidden py-24 sm:py-32"
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute right-0 top-0 h-[500px] w-[500px] translate-x-1/4 -translate-y-1/4 rounded-full bg-gradient-to-bl from-primary/20 to-transparent blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 h-[300px] w-[300px] rounded-full bg-gradient-to-tr from-pink-500/10 to-transparent blur-3xl" />
+        <div className="absolute inset-0 bg-[#0c0515]" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 50% at 80% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 10% 70%, rgba(236, 72, 153, 0.08) 0%, transparent 50%)
+            `,
+          }}
+        />
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-sm font-semibold uppercase tracking-wider text-primary"
-          >
-            How It Works
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
-          >
-            From Idea to <span className="text-gradient">Hit Song</span> in
-            Minutes
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-4 text-lg text-muted-foreground"
-          >
-            Our streamlined process makes music creation accessible to everyone,
-            from beginners to professionals.
-          </motion.p>
+        <div
+          data-index="header"
+          className="mx-auto max-w-2xl text-center"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+          }}
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 mb-4">
+            <span className="text-xs text-purple-300">Simple Process</span>
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            From Gig Post to{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Live Show
+            </span>
+          </h2>
+          <p className="mt-4 text-base text-white/50">
+            Our streamlined process makes booking live music simple, whether
+            you're a venue owner, event planner, or hosting a private party.
+          </p>
         </div>
 
         {/* Steps */}
-        <div className="mt-16 lg:mt-24">
+        <div className="mt-20">
           <div className="relative">
             {/* Connecting line */}
-            <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-border to-transparent lg:block" />
+            <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 lg:block">
+              <div className="h-full w-full bg-gradient-to-b from-purple-500/20 via-purple-500/40 to-purple-500/20" />
+            </div>
 
-            <div className="space-y-12 lg:space-y-24">
+            <div className="space-y-16 lg:space-y-24">
               {steps.map((step, index) => (
-                <motion.div
+                <div
                   key={step.number}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  data-index={index}
                   className={`flex flex-col items-center gap-8 lg:flex-row ${
                     index % 2 === 1 ? "lg:flex-row-reverse" : ""
                   }`}
+                  style={{
+                    opacity: visibleSteps[index] ? 1 : 0,
+                    transform: visibleSteps[index]
+                      ? "translateY(0)"
+                      : "translateY(30px)",
+                    transition: "opacity 0.6s ease, transform 0.6s ease",
+                  }}
                 >
                   {/* Content */}
                   <div
@@ -103,28 +153,28 @@ export function HowItWorksSection() {
                       index % 2 === 1 ? "lg:text-right" : ""
                     }`}
                   >
-                    <span className="inline-block text-6xl font-bold text-primary/20">
+                    <span className="inline-block text-5xl font-bold bg-gradient-to-b from-purple-400/40 to-purple-400/10 bg-clip-text text-transparent">
                       {step.number}
                     </span>
-                    <h3 className="mt-4 text-2xl font-bold text-foreground">
+                    <h3 className="mt-3 text-xl font-bold text-white">
                       {step.title}
                     </h3>
-                    <p className="mt-3 max-w-md text-muted-foreground">
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-white/50 mx-auto lg:mx-0">
                       {step.description}
                     </p>
                   </div>
 
                   {/* Icon */}
-                  <div className="relative flex h-24 w-24 shrink-0 items-center justify-center">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-pink-500/20 blur-xl" />
-                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-border bg-card text-primary">
+                  <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 to-pink-500/30 blur-xl" />
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-[#0c0515] text-purple-400">
                       {step.icon}
                     </div>
                   </div>
 
                   {/* Spacer */}
                   <div className="hidden flex-1 lg:block" />
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -133,4 +183,3 @@ export function HowItWorksSection() {
     </section>
   );
 }
-

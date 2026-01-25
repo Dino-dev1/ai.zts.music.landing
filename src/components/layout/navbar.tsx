@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Music2, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,34 +12,36 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How it Works" },
+  { href: "#features", label: "For Artists" },
+  { href: "#how-it-works", label: "For Venues" },
   { href: "#pricing", label: "Pricing" },
-  { href: "#testimonials", label: "Testimonials" },
+  { href: "#testimonials", label: "About" },
 ];
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed left-0 right-0 top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl"
-    >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/[0.08] bg-white/[0.03] backdrop-blur-2xl backdrop-saturate-150">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <motion.div
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.5 }}
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-pink-500"
-          >
-            <Music2 className="h-6 w-6 text-white" />
-          </motion.div>
-          <span className="text-xl font-bold tracking-tight">
-            ZTS <span className="text-gradient">Music</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-6 w-6"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <rect x="2" y="2" width="8" height="8" rx="1.5" className="fill-white/90" />
+              <rect x="14" y="2" width="8" height="8" rx="1.5" className="fill-white/90" />
+              <rect x="2" y="14" width="8" height="8" rx="1.5" className="fill-white/90" />
+              <rect x="14" y="14" width="8" height="8" rx="1.5" className="fill-white/40" />
+            </svg>
+          </div>
+          <span className="text-lg font-semibold tracking-tight text-white">
+            ZTS Gigs
           </span>
         </Link>
 
@@ -50,7 +51,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white"
             >
               {link.label}
             </Link>
@@ -58,20 +59,31 @@ export function Navbar() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="hidden items-center gap-3 md:flex">
-          <Button variant="ghost" size="sm">
-            Sign In
-          </Button>
-          <Button size="sm" className="bg-gradient-to-r from-primary to-pink-500 hover:opacity-90">
-            Get Started
-          </Button>
+        <div className="hidden items-center gap-4 md:flex">
+          <Link href="https://app.ztsmusic.com/login">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-sm font-medium text-white/70 hover:bg-transparent hover:text-white"
+            >
+              Log In
+            </Button>
+          </Link>
+          <Link href="https://app.ztsmusic.com/register">
+            <Button
+              size="sm"
+              className="rounded-full bg-white/10 px-5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20"
+            >
+              Join Now
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="text-white hover:bg-white/10 md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
@@ -83,43 +95,44 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <motion.div
-        initial={false}
-        animate={{
-          height: isMobileMenuOpen ? "auto" : 0,
-          opacity: isMobileMenuOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.2 }}
+      <div
         className={cn(
-          "overflow-hidden border-b border-border/40 bg-background/95 backdrop-blur-xl md:hidden",
-          !isMobileMenuOpen && "border-b-0"
+          "overflow-hidden bg-white/[0.02] backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 md:hidden",
+          isMobileMenuOpen ? "max-h-[400px] border-b border-white/[0.08]" : "max-h-0"
         )}
       >
-        <div className="flex flex-col gap-4 px-4 py-4">
+        <div className="flex flex-col gap-1 px-6 py-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="rounded-lg px-4 py-3 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div className="flex flex-col gap-2 pt-4">
-            <Button variant="ghost" size="sm" className="w-full">
-              Sign In
-            </Button>
-            <Button
-              size="sm"
-              className="w-full bg-gradient-to-r from-primary to-pink-500 hover:opacity-90"
-            >
-              Get Started
-            </Button>
+          <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4">
+            <Link href="https://app.ztsmusic.com/login">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-full justify-center text-white/70 hover:bg-white/5 hover:text-white"
+              >
+                Log In
+              </Button>
+            </Link>
+            <Link href="https://app.ztsmusic.com/register">
+              <Button
+                size="sm"
+                className="w-full justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
+              >
+                Join Now
+              </Button>
+            </Link>
           </div>
         </div>
-      </motion.div>
-    </motion.header>
+      </div>
+    </header>
   );
 }
-
