@@ -1,159 +1,274 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 
 interface Testimonial {
   name: string;
   role: string;
   avatar: string;
   content: string;
-  rating: number;
 }
 
 const testimonials: Testimonial[] = [
   {
     name: "Priya Sharma",
-    role: "Solo Singer, Mumbai",
-    avatar: "https://placekitten.com/100/100",
+    role: "Venue Owner, Mumbai",
+    avatar: "https://i.pravatar.cc/100?img=1",
     content:
-      "I've booked 15+ gigs in 3 months through ZTS! The platform makes it so easy to find venues that match my style. Finally earning from my passion!",
-    rating: 5,
+      "ZTS Music made booking live acts so simple. I posted a gig and had 15 quality applications within 24 hours.",
   },
   {
-    name: "Rajesh Khanna",
-    role: "The Rooftop Lounge, Delhi",
-    avatar: "https://placekitten.com/101/101",
+    name: "Rahul Verma",
+    role: "Wedding Planner",
+    avatar: "https://i.pravatar.cc/100?img=3",
     content:
-      "Finding quality artists was always a hassle. Now I can browse portfolios, listen to samples, and book the perfect artist for my venue in minutes.",
-    rating: 5,
+      "Finding the perfect sangeet band used to take weeks. Now I book verified artists in days.",
   },
   {
-    name: "DJ Arjun",
-    role: "DJ & Producer, Bangalore",
-    avatar: "https://placekitten.com/102/102",
+    name: "Anjali Desai",
+    role: "Solo Vocalist",
+    avatar: "https://i.pravatar.cc/100?img=5",
     content:
-      "The bidding system is transparent and fair. I've built regular relationships with multiple venues. ZTS helped me turn side gigs into a full-time career!",
-    rating: 5,
+      "As a freelance singer, getting gigs was uncertain. ZTS Music gives me steady opportunities that match my style.",
   },
   {
-    name: "Meera Iyer",
-    role: "Café Harmony, Chennai",
-    avatar: "https://placekitten.com/103/103",
+    name: "Vikram Malhotra",
+    role: "Event Manager",
+    avatar: "https://i.pravatar.cc/100?img=8",
     content:
-      "We host live music every Friday. ZTS connects us with talented local artists who understand our vibe. Our customer footfall increased by 40%!",
-    rating: 5,
+      "We book 20+ events monthly. The platform's filtering and verified reviews save us countless hours.",
   },
   {
-    name: "The Acoustic Trio",
-    role: "Band, Pune",
-    avatar: "https://placekitten.com/104/104",
+    name: "Meera Krishnan",
+    role: "Jazz Band Leader",
+    avatar: "https://i.pravatar.cc/100?img=9",
     content:
-      "From restaurants to corporate events, ZTS helps us find diverse opportunities. The real-time notifications ensure we never miss a great gig!",
-    rating: 5,
+      "Our band's bookings tripled since joining. The direct communication with venues is exactly what we needed.",
   },
   {
-    name: "Vikram Singh",
-    role: "Sky High Restaurant, Jaipur",
-    avatar: "https://placekitten.com/105/105",
+    name: "Arjun Nair",
+    role: "Restaurant Owner",
+    avatar: "https://i.pravatar.cc/100?img=12",
     content:
-      "Professional, reliable, and efficient. ZTS verified artist profiles give me confidence. Our guests love the live music experience we now offer!",
-    rating: 5,
+      "Live music transformed our restaurant's ambiance. ZTS helped us find affordable acoustic artists.",
   },
 ];
 
-export function TestimonialsSection() {
+function SpotlightCard({
+  testimonial,
+  index,
+  isVisible,
+  mousePosition,
+  containerRect,
+}: {
+  testimonial: Testimonial;
+  index: number;
+  isVisible: boolean;
+  mousePosition: { x: number; y: number };
+  containerRect: DOMRect | null;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [localMouse, setLocalMouse] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    if (!cardRef.current || !containerRect) return;
+
+    const cardRect = cardRef.current.getBoundingClientRect();
+    const relativeX = mousePosition.x - (cardRect.left - containerRect.left);
+    const relativeY = mousePosition.y - (cardRect.top - containerRect.top);
+
+    setLocalMouse({ x: relativeX, y: relativeY });
+
+    const isNear = relativeX >= -100 && relativeX <= cardRect.width + 100 &&
+                   relativeY >= -100 && relativeY <= cardRect.height + 100;
+    setIsHovering(isNear);
+  }, [mousePosition, containerRect]);
+
   return (
-    <section id="testimonials" className="relative py-24 sm:py-32">
+    <div
+      ref={cardRef}
+      data-index={index}
+      className="group relative rounded-2xl p-[1px]"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.5s ease, transform 0.5s ease",
+      }}
+    >
+      {/* Spotlight overlay for border */}
+      <div
+        className="absolute inset-0 rounded-2xl pointer-events-none"
+        style={{
+          background: `radial-gradient(600px circle at ${localMouse.x}px ${localMouse.y}px, rgba(139, 92, 246, 0.2), transparent 40%)`,
+          opacity: isHovering ? 1 : 0,
+          transition: "opacity 0.3s ease",
+        }}
+      />
+      <div
+        className="relative h-full rounded-2xl border border-white/[0.06] p-5 overflow-hidden"
+        style={{ background: "rgba(12, 5, 21, 1)" }}
+      >
+        {/* Spotlight overlay for inner glow */}
+        <div
+          className="absolute inset-0 rounded-2xl pointer-events-none"
+          style={{
+            background: `radial-gradient(600px circle at ${localMouse.x}px ${localMouse.y}px, rgba(139, 92, 246, 0.08), transparent 40%)`,
+            opacity: isHovering ? 1 : 0,
+            transition: "opacity 0.3s ease",
+          }}
+        />
+        {/* Quote icon */}
+        <Quote className="h-6 w-6 text-purple-500/20 mb-3" />
+
+        {/* Rating */}
+        <div className="flex gap-0.5 mb-3">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star
+              key={i}
+              className="h-3.5 w-3.5 fill-amber-400/80 text-amber-400/80"
+            />
+          ))}
+        </div>
+
+        {/* Content */}
+        <p className="text-sm leading-relaxed text-white/60">
+          &ldquo;{testimonial.content}&rdquo;
+        </p>
+
+        {/* Author */}
+        <div className="mt-4 flex items-center gap-3">
+          <Image
+            src={testimonial.avatar}
+            alt={testimonial.name}
+            width={36}
+            height={36}
+            className="rounded-full ring-1 ring-white/10"
+          />
+          <div>
+            <div className="text-sm font-medium text-white">
+              {testimonial.name}
+            </div>
+            <div className="text-xs text-white/40">
+              {testimonial.role}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function TestimonialsSection() {
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(testimonials.length).fill(false));
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [containerRect, setContainerRect] = useState<DOMRect | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = entry.target.getAttribute("data-index");
+            if (index === "header") {
+              setHeaderVisible(true);
+            } else {
+              const idx = Number(index);
+              setTimeout(() => {
+                setVisibleCards((prev) => {
+                  const next = [...prev];
+                  next[idx] = true;
+                  return next;
+                });
+              }, idx * 80);
+            }
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    const elements = sectionRef.current?.querySelectorAll("[data-index]");
+    elements?.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setContainerRect(rect);
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  }, []);
+
+  return (
+    <section ref={sectionRef} id="testimonials" className="relative py-24 sm:py-32">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] translate-x-1/4 translate-y-1/4 rounded-full bg-gradient-to-tl from-primary/15 to-transparent blur-3xl" />
-        <div className="absolute left-0 top-1/2 h-[300px] w-[300px] -translate-x-1/4 -translate-y-1/2 rounded-full bg-gradient-to-br from-pink-500/10 to-transparent blur-3xl" />
+        <div className="absolute inset-0 bg-[#0c0515]" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 50% 40% at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse 40% 30% at 10% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 50%)
+            `,
+          }}
+        />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-sm font-semibold uppercase tracking-wider text-primary"
-          >
-            Testimonials
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
-          >
-            Loved by <span className="text-gradient">Artists & Venues</span> Across India
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-4 text-lg text-muted-foreground"
-          >
-            Join thousands of artists and venue owners who have transformed their
-            live music experience with ZTS.
-          </motion.p>
+        <div
+          data-index="header"
+          className="mx-auto max-w-2xl text-center"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+          }}
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 mb-4">
+            <span className="text-xs text-purple-300">Testimonials</span>
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Trusted by{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Venues & Artists
+            </span>
+          </h2>
+          <p className="mt-4 text-base text-white/50">
+            See how venues and artists are using ZTS Music to create
+            unforgettable live music experiences.
+          </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          ref={containerRef}
+          onMouseMove={handleMouseMove}
+          className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <SpotlightCard
               key={testimonial.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-card"
-            >
-              {/* Rating */}
-              <div className="flex gap-1">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 fill-amber-400 text-amber-400"
-                  />
-                ))}
-              </div>
-
-              {/* Content */}
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                &ldquo;{testimonial.content}&rdquo;
-              </p>
-
-              {/* Author */}
-              <div className="mt-6 flex items-center gap-3">
-                <Image
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-                <div>
-                  <div className="font-medium text-foreground">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              testimonial={testimonial}
+              index={index}
+              isVisible={visibleCards[index]}
+              mousePosition={mousePosition}
+              containerRect={containerRect}
+            />
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-
